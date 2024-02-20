@@ -1,0 +1,27 @@
+<!-- src/main/resources/static/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Test</title>
+</head>
+<body>
+    <button onclick="sendCorsRequest()">Send CORS Request</button>
+    <div id="response"></div>
+
+    <script>
+        function sendCorsRequest() {
+            fetch('http://localhost:8080/api/cors-violation', {
+                method: 'GET',
+                headers: {
+                    'Authorization': '', // Replace with your actual token
+                },
+            })
+            .then(response => response.text())
+            .then(data => document.getElementById('response').innerText = data)
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
